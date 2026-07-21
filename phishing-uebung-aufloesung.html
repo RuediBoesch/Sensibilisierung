@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sicherheits-Übung – Toggenburg Bergbahnen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pine:#1F4A3F;
+    --pine-deep:#16302B;
+    --paper:#EBEFED;
+    --card:#FBFCFB;
+    --amber:#DE8C34;
+    --amber-soft:#F6E4CB;
+    --line:#CBD4CF;
+    --ink:#233029;
+    --muted:#5B6863;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:
+      radial-gradient(120% 90% at 50% -10%, #F3F6F4 0%, var(--paper) 55%, #DFE5E2 100%);
+    color:var(--ink);
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:32px 20px;
+    line-height:1.55;
+  }
+  .card{
+    width:100%;
+    max-width:620px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:0 0 40px;
+    overflow:hidden;
+    box-shadow:0 24px 60px -30px rgba(22,48,43,.45);
+  }
+  .hook-stage{
+    background:linear-gradient(180deg,var(--pine) 0%,var(--pine-deep) 100%);
+    height:170px;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+  }
+  .hook-stage svg{position:absolute;top:0;left:50%;transform:translateX(-50%)}
+  .line{
+    stroke:#9FB7AD;stroke-width:1.6;stroke-dasharray:200;stroke-dashoffset:200;
+    animation:drop 1.1s ease-out .2s forwards;
+  }
+  .hook{
+    transform-origin:50% 0;
+    opacity:0;
+    animation:appear .4s ease-out 1.2s forwards, sway 3.4s ease-in-out 1.6s infinite;
+  }
+  @keyframes drop{to{stroke-dashoffset:0}}
+  @keyframes appear{to{opacity:1}}
+  @keyframes sway{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
+  .stage-label{
+    position:relative;
+    z-index:2;
+    color:#CFE0D8;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-weight:600;
+    padding-bottom:16px;
+  }
+  .body{padding:34px 38px 0}
+  .eyebrow{
+    display:inline-block;
+    font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;
+    color:var(--amber);
+    background:var(--amber-soft);
+    padding:5px 11px;border-radius:999px;
+    margin-bottom:18px;
+  }
+  h1{
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-weight:800;
+    font-size:clamp(28px,6vw,40px);
+    line-height:1.05;
+    letter-spacing:-.01em;
+    color:var(--pine-deep);
+    margin-bottom:16px;
+  }
+  .lead{font-size:17px;color:var(--muted);margin-bottom:28px}
+  .lead strong{color:var(--ink);font-weight:600}
+  h2{
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-weight:700;
+    font-size:15px;
+    letter-spacing:.02em;
+    color:var(--pine);
+    margin:26px 0 12px;
+  }
+  ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+  li{position:relative;padding-left:30px;font-size:15px}
+  li::before{
+    content:"";
+    position:absolute;left:0;top:2px;
+    width:18px;height:18px;border-radius:50%;
+    background:var(--amber-soft);
+    border:1.5px solid var(--amber);
+  }
+  li::after{
+    content:"";
+    position:absolute;left:6px;top:6px;
+    width:6px;height:6px;border-radius:50%;
+    background:var(--amber);
+  }
+  .todo li::before{background:#E1EFE9;border-color:var(--pine)}
+  .todo li::after{background:var(--pine)}
+  .reassure{
+    margin-top:30px;
+    background:#F1F5F3;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:18px 20px;
+    font-size:14px;
+    color:var(--muted);
+  }
+  .reassure strong{color:var(--pine-deep)}
+  .foot{
+    margin-top:26px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;align-items:center;gap:12px;
+    font-size:12.5px;color:var(--muted);
+    flex-wrap:wrap;
+  }
+  .foot b{color:var(--ink);font-weight:600}
+  @media (max-width:480px){.body{padding:28px 22px 0}}
+  @media (prefers-reduced-motion:reduce){
+    .line{animation:none;stroke-dashoffset:0}
+    .hook{animation:appear .01s forwards;opacity:1}
+  }
+</style>
+</head>
+<body>
+  <main class="card">
+    <div class="hook-stage" aria-hidden="true">
+      <svg width="160" height="170" viewBox="0 0 160 170" fill="none">
+        <line class="line" x1="80" y1="0" x2="80" y2="96"/>
+        <g class="hook">
+          <path d="M80 96 v22 a20 20 0 1 1 -20 -20"
+                stroke="#EBB877" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M60 98 l-7 -9 M60 98 l10 -4" stroke="#EBB877" stroke-width="4" stroke-linecap="round"/>
+        </g>
+      </svg>
+      <span class="stage-label">Sicherheits-Übung</span>
+    </div>
+
+    <div class="body">
+      <span class="eyebrow">Nur eine Übung</span>
+      <h1>Erwischt – zum Glück nur zur Übung.</h1>
+      <p class="lead">
+        Sie haben auf einen Link in einer <strong>simulierten Phishing-Mail</strong> geklickt.
+        Kein Grund zur Sorge: Es wurden keine Daten abgegriffen und es hat keine Folgen.
+        Wäre die Mail echt gewesen, hätte ein Klick genügt, um Schaden anzurichten –
+        genau darum üben wir das gemeinsam.
+      </p>
+
+      <h2>Diese Warnzeichen steckten im Mail</h2>
+      <ul>
+        <li>Absenderadresse leicht abweichend oder unbekannt (z. B. Tippfehler in der Domain).</li>
+        <li>Dringlicher oder drohender Ton – «sofort», «letzte Warnung», «Konto gesperrt».</li>
+        <li>Link-Text und tatsächliche Zieladresse stimmen nicht überein (vor dem Klick über den Link fahren).</li>
+        <li>Aufforderung, Passwort, Login oder Zahlungsdaten einzugeben.</li>
+        <li>Unerwarteter Anhang oder ungewohnte Anrede und Sprache.</li>
+      </ul>
+
+      <h2>Beim nächsten verdächtigen Mail</h2>
+      <ul class="todo">
+        <li>Nicht klicken und keine Anhänge öffnen.</li>
+        <li>Absenderadresse und Links in Ruhe prüfen.</li>
+        <li>Im Zweifel nachfragen und die Mail melden bei <b>[Meldestelle / IT-Kontakt eintragen]</b>.</li>
+      </ul>
+
+      <div class="reassure">
+        <strong>Ganz ruhig:</strong> Diese Übung dient allein dem Lernen. Sie wird nicht
+        einzeln ausgewertet und hat keine Konsequenzen für Sie. Wer sie einmal erlebt hat,
+        erkennt den echten Betrugsversuch später deutlich schneller.
+      </div>
+
+      <div class="foot">
+        <span><b>Toggenburg Bergbahnen AG</b> · Interne Sensibilisierung</span>
+        <span>Fragen? Wenden Sie sich an [Kontakt].</span>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
